@@ -17,6 +17,9 @@ d200 = D('0.' + '0' * 200 + '1') # system basically breaks at 200 digits after t
 class FactorialError(ValueError): 
     pass
 
+class TrigPolyError(ValueError):
+    pass
+
 from math import factorial as _fact
 
 def _sin(x):
