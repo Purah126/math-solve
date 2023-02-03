@@ -1,7 +1,7 @@
 
-''' library for numeric types '''
+''' library for numeric types/thing required by solve.py '''
 
-__all__ = ['pi', 'e', 'Number', 'Boolean', 'Polynomial', 'i']
+__all__ = ['pi', 'e', 'Number', 'Boolean', 'Polynomial', 'i', 'TrigPolyError', 'PolyValueError', 'FactorialError']
 
 import decimal
 
@@ -18,6 +18,9 @@ class FactorialError(ValueError):
     pass
 
 class TrigPolyError(ValueError):
+    pass
+
+class PolyValueError(ValueError):
     pass
 
 from math import factorial as _fact
