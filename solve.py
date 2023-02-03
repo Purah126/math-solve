@@ -90,7 +90,6 @@ def mod(x, y): return x % y
 # gets function, pretty simple
 def get_func(f, x): return lambda v: f(v, x)
 
-
 def solve(q):
     '''duh'''
     q = q.lower()
