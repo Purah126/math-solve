@@ -277,7 +277,7 @@ def _normalize(p):
 
 class Polynomial(ReversedMethods):
     
-    '''Polynomial object, division by each other may (will) produce incorrect results'''
+    '''Polynomial object'''
     
     def __init__(self, *ds):
         if len(ds) == 1:
@@ -361,12 +361,24 @@ class Polynomial(ReversedMethods):
         
     def __mod__(self, other):
         return self.__divmod__(other)[0]
-    
+       
     def __truediv__(self, other):
-        if type(other) != Number:
-            return self // other
-        return Polynomial(*[n / other for n in self.ds])
-    
+        if type(other) == Number:
+            return self * (N(1)/other)
+        elif type(other) != Polynomial:
+            raise TypeError()
+        elif len(other.ds) == 1 and len(self.ds) == 1:
+            return Polynomial(self.ds[0] / other.ds[0])
+        elif len(other.ds) == 1:
+            o = Polynomial()
+            for d in self.ds:
+                o += Polynomial(d) / Polynomial(other.ds[0])
+        else:
+            o = Polynomial()
+            for i, d in enumerate(other.ds):
+                o += (self / Polynomial(*([0] * i + d)))
+            return o
+  
     def __str__(self):
         x = ''
         for j, n in enumerate(self.ds):
