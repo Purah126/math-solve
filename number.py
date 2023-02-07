@@ -35,7 +35,7 @@ def _sin(x):
 
 def _cos(x):
     '''internal'''
-    return (1-_sin(x)**N(2)).sqrt()
+    return (1-_sin(x)**D(2)).sqrt()
 
 def _arctan(x): # i don't trust library functions
     '''internal'''
@@ -209,18 +209,18 @@ class Number(ReversedMethods):
         return Number(yr - xr, yi - xi)
         
     def __ln__(self): # magic
-        r = ((self.r**N(2)+self.i**N(2)).ln())/2
+        r = ((self.r**D(2)+self.i**D(2)).ln())/2
         i = (-1 if self.i < 0 else 1)*_arctan(self.i/self.r)
         return Number(r, i)
 
-    def __pow__(self, other):
+    def __pow__(self, other, flag=False):
         other = Number(other)
-        if other.r == 0.5:
+        if other.r == 0.5 and not flag:
             if ((self.i < d80 and self.i > 0) or (self.i > 0 - d80 and self.i < 0)):
                 if self.r < 0:
                     return Number(0, abs(self.r).sqrt())
                 else:
-                    return Number(self.r.sqrt())
+                    return Number(self.r.sqrt(), True)
             else:
                 return self.__pow__(Number(other))
         other = Number(other)
@@ -255,6 +255,7 @@ class Number(ReversedMethods):
         return Number(0) - self
         
     __xor__ = __pow__
+    __call__ = __mul__ # bypass, might integrate into solve.py soon
         
     def solve(self):
         return self
@@ -395,7 +396,7 @@ class Polynomial(ReversedMethods):
             return x[3:] + self.ext
             
     __eq__ = __sub__
-    __req__ = __sub__
+    __call__ = __mul__ # bypass, might integrate into solve.py soon
     
     def solve(self):
         ds = self.ds
