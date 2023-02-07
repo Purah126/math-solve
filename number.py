@@ -1,5 +1,5 @@
 
-''' library for numeric types/thing required by solve.py '''
+''' module for numeric types/thing required by solve.py '''
 
 __all__ = ['pi', 'e', 'Number', 'Boolean', 'Polynomial', 'i', 'TrigPolyError', 'PolyValueError', 'FactorialError']
 
@@ -131,22 +131,23 @@ class Number(ReversedMethods):
             if (self.i < d80 and self.i >= 0) or (self.i > 0 - d80 and self.i < 0):
                 return '0'
             elif self.i == 1:
-                return 'i'
+                x = 'i'
             elif self.i == -1:
-                return '-i'
+                x = '-i'
             else:
-                return f'{self.i}i'
+                x = f'{self.i}i'
         else:
             if (self.i < d80 and self.i >= 0) or (self.i > 0 - d80 and self.i < 0):
-                return str(self.r)
+                x = str(self.r)
             elif self.i == 1:
-                return f'{self.r} + i'
+                x = f'{self.r} + i'
             elif self.i == -1:
-                return f'{self.r} - i'
+                x = f'{self.r} - i'
             elif self.i > 0:
-                return f'{self.r} + {self.i}i'
+                x = f'{self.r} + {self.i}i'
             else:
-                return f'{self.r} - {str(abs(self.i))[1:]}i'
+                x = f'{self.r} - {str(abs(self.i))[1:]}i'
+        return x.strip('0').strip('.')
     
     def __abs__(self):
         return Number((self.r ** 2 + self.i ** 2).sqrt())
