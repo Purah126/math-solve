@@ -80,6 +80,9 @@ class Boolean:
         
     def solve(self):
         return str(self)
+    
+    def __bool__(self):
+        return self.v
 
 B = Boolean
 
@@ -331,7 +334,7 @@ class Polynomial(ReversedMethods):
             ods = [Number(0)] + ods
         for i, m in enumerate(sds):
             for j, n in enumerate(ods):
-                out[i + j - 1] += m * n
+                out[i + j] += m * n
         return Polynomial(*out)
     
     def __divmod__(self, other):
