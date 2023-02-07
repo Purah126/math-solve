@@ -136,12 +136,12 @@ def evaluate(q)
                'If it still dosen\'t work, report it, but if you are trying non-natural powers of x,' + \
                ' those don\'t work either. Or maybe something else is doing this, the error is''' + str(e)
     except Exception as e:
-        return 'XS has encountered an unspecified error, please report this, error is:' + str(e)
+        return 'The solver has encountered an unspecified error, please report this, error is:' + str(e)
 
 if __name__ = __main__:
     query = input('Enter query')
     query = parse_query(query)
-    print('Solved: ' + evaluate('(' + q + ').solve()'))
+    print('Solved/Evaluated: ' + evaluate('(' + q + ').solve()'))
     print('Simplified:' + evaluate(q))
           
    
