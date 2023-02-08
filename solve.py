@@ -113,8 +113,8 @@ def parse_query(q):
         an = n if 'i' not in n else '0, ' + n.replace('i', '')
         q = re.sub(f'(?<![0123456789i.])(?<!N\(){n}(?![0123456789])', f'N({an})', q)
     q = q.replace('^', '**')
-    q = q.replace('true', 'B(True)')
-    q = q.replace('false', 'B(False)')
+    q = q.replace('true', 'True')
+    q = q.replace('false', 'False')
     q = q.replace('=', '==')
     return q
 
@@ -131,7 +131,7 @@ def evaluate(q):
         return 'Cannot compute trigonometry of variable expressions'
     except SyntaxError:
         return 'There is a semantic error in your equation, or you are trying non-natural powers of x'
-    except TypeError:
+    except TypeError as e:
         return 'There is something wrong with either your equation or the solver, or you are trying to ' + \
                'solve inequalites, which are not supported :(. Try changing your equation slightly. ' + \
                'If it still dosen\'t work, report it, but if you are trying non-natural powers of x,' + \
