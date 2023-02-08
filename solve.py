@@ -117,7 +117,7 @@ def parse_query(q):
     q = q.replace('false', 'B(False)')
     q = q.replace('=', '==')
 
-def evaluate(q)
+def evaluate(q):
     try:
         return str(eval(q)).replace('True', 'true').replace('False', 'false')
     except decimal.Overflow:
