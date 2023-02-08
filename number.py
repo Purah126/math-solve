@@ -162,7 +162,7 @@ class Number(ReversedMethods):
     
     def __truediv__(self, other):
         if type(other) == Polynomial:
-            raise TypeError('Cannot divide number by polynomial')
+            return Polynomial(self) / other
         other = Number(other)
         a = self.r
         b = self.i
