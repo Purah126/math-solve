@@ -1,7 +1,7 @@
 
 ''' module for numeric types/thing required by solve.py '''
 
-__all__ = ['pi', 'e', 'Number', 'Boolean', 'Polynomial', 'i', 'TrigPolyError', 'PolyValueError', 'FactorialError']
+__all__ = ['pi', 'e', 'Number', 'Polynomial', 'i', 'TrigPolyError', 'PolyValueError', 'FactorialError']
 
 import decimal
 
@@ -55,36 +55,6 @@ def _arctan(x): # i don't trust library functions
 def _s(x):
     '''internal'''
     return -1 if x < 0 else 1
-  
-class Boolean:
-    
-    '''emulation of type bool with solve() method'''
-    
-    def __init__(self, v):
-        self.v = v
-        
-    def __str__(self):
-        return 'true' if self.v else 'false'
-        
-    def __and__(self, other):
-        return Boolean(self.v and other.v)
-        
-    def __or__(self, other):
-        return Boolean(self.v or other.v)
-        
-    def __not__(self, other):
-        return Boolean(not self.v)
-     
-    def __bool__(self):
-        return self.v
-        
-    def solve(self):
-        return str(self)
-    
-    def __bool__(self):
-        return self.v
-
-B = Boolean
 
 class ReversedMethods:
     
@@ -154,23 +124,23 @@ class Number(ReversedMethods):
     
     def __eq__(self, other):
         other = Number(other)
-        return B((self.r == other.r) and (self.i == other.i))
+        return ((self.r == other.r) and (self.i == other.i))
         
     def __ne__(self, other):
-        return B(not (self == other))
+        return (not (self == other))
     
     def __gt__(self, other):
         other = Number(other)
-        return B(abs(self).r > abs(other).r)
+        return (abs(self).r > abs(other).r)
     
     def __ge__(self, other):
-        return B((self > other) or (self == other))
+        return ((self > other) or (self == other))
     
     def __lt__(self, other):
-        return B(not (self >= other))
+        return (not (self >= other))
     
     def __le__(self, other):
-        return not B((self > other))
+        return not ((self > other))
     
     def __add__(self, other):
         if type(other) == Polynomial:
