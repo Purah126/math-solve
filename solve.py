@@ -143,5 +143,5 @@ if __name__ = __main__:
     query = input('Enter query:')
     query = parse_query(query)
     print('Solved/Evaluated: ' + evaluate('(' + query + ').solve()'))
-    print('Simplified:' + evaluate(query))
+    print('Simplified: ' + evaluate(query))
     
