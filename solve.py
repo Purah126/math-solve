@@ -139,9 +139,8 @@ def evaluate(q):
         return 'The solver has encountered an unspecified error, please report this, error is:' + str(e)
 
 if __name__ = __main__:
-    query = input('Enter query')
+    query = input('Enter query:')
     query = parse_query(query)
     print('Solved/Evaluated: ' + evaluate('(' + q + ').solve()'))
     print('Simplified:' + evaluate(q))
-          
-   
+    
