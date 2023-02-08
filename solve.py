@@ -116,6 +116,7 @@ def parse_query(q):
     q = q.replace('true', 'B(True)')
     q = q.replace('false', 'B(False)')
     q = q.replace('=', '==')
+    return q
 
 def evaluate(q):
     try:
