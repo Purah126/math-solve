@@ -1,6 +1,11 @@
 
 import curses
 
+for x in dir(curses):
+    if x.startswith('KEY_'):
+        exec(f'{x} = curses.{x}')
+MOUSE = curses.KEY_MOUSE
+
 def start():
     '''start the window'''
     global s
@@ -22,12 +27,6 @@ def start():
     for bg in COLORS:
         for fg in COLORS:
             curses.init_pair(bg + (8 * fg), bg, fg)
-    for x in dir(curses):
-        if x.startswith('KEY_'):
-            exec(f'global {x}')
-            exec(f'{x} = curses.{x}')
-    global mouse
-    MOUSE = KEY_MOUSE
 
 def stop():
     '''stop the window'''
